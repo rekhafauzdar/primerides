@@ -75,7 +75,34 @@ export class CommonService {
       return this.http.post<any>(`${this.API_URL}/login/user-signup`, user)
         .pipe(map(response => response));
     }
-  
+     
 
+     public addNewCar(data: any): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/car-details/create-car-details`, data, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
+
+
+      public getAllCar(): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/car-details/get-all-car-details`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
   
+      
+      public getCarById(id: any): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/car-details/grt-car-details`, id, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
 }
