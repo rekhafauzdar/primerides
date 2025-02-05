@@ -10,6 +10,7 @@ import {
   userBookings,
   apiResultFormat,
 } from 'src/app/shared/services/model/model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin',
@@ -52,6 +53,7 @@ export class AdminComponent {
     });
 
     this.getAllCars();
+    this.getCarsById();
   }
 
   private getTableData(pageOption: pageSelection): void {
@@ -134,31 +136,55 @@ export class AdminComponent {
 
   firstRangeKms: string = ''; 
   secondRangeKms: string = ''; 
-  thirdRangeKms: string = ''; // Add Third Range Kms
-  monthlyKms: string = ''; // Add Monthly Kms
-  location: string = ''; // Add Monthly Kms
+  thirdRangeKms: string = ''; 
+  monthlyKms: string = ''; 
+  location: string = '';
  
-  image: File | null = null;
-selectedFile: string | null = null; 
-
-  onFileSelected(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.selectedFile = reader.result as string; // Base64 string store karna
-      };
-    }
-  }
 
 
   // onFileSelected(event: any) {
   //   if (event.target.files.length > 0) {
-  //     this.selectedFile = event.target.files[0]; // Direct file object store karna
+  //     const file = event.target.files[0];
+  //     const reader = new FileReader();
+      
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.selectedFile = reader.result as string; // Base64 string store karna
+  //     };
   //   }
   // }
+
+  imageId: number = 0;
+  imageUrl: string | null = null;
+   selectedFile: File | null = null;
+  
+   onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+  
+      const formData = new FormData();
+  
+      if (this.selectedFile) {  
+        formData.append('image', this.selectedFile); 
+      }
+  
+      this.commonService.uploadImage(formData).subscribe({
+        next: (res: any) => {
+          if (res.status == "true") {
+            Swal.fire('', 'Image Uploaded Successfully!', 'success');
+            this.imageId = res.data.imageId; 
+          } else {
+            Swal.fire('', 'Image Failed to Upload!', 'error');
+          }
+        },
+        error: (err) => {
+          console.error('Error uploading image:', err);
+          Swal.fire('', 'Something went wrong!', 'error');
+        }
+      });
+    }
+  }
+  
   
 
   saveNewCar(): void {
@@ -171,7 +197,7 @@ selectedFile: string | null = null;
     seater: this.seater,
     year: this.year,
     fuel: this.fuel,
-    image: this.selectedFile,
+    imageId: this.imageId,
     transmission: this.transmission,
     firstRangePrice: this.firstRangePrice,
     secondRangePrice: this.secondRangePrice,
@@ -186,17 +212,47 @@ selectedFile: string | null = null;
     location: this.location, 
    }
     
-
-
-    this.commonService.addNewCar(payload).subscribe((response:any) => {
-      if (response.status == 'true') {
-        this.router.navigate([routes.login])
-      } else {
-        console.log("Signup failed");
+    this.commonService.addNewCar(payload).subscribe({
+      next:(res:any)=>{
+        if (res.status == "true") {
+          Swal.fire('','Car Added Sucessfully!','success');
+          
+        } else {
+          Swal.fire('','Car Failed to Add!','error');
+        }
+      },
+      error: (err) => {
+        console.error('Error adding car:', err);
+        Swal.fire('', 'Something went wrong!', 'error');
       }
+      
     });
   }
 
+
+
+  updateCar(): void {
+    const payload={
+      carId:"34",
+      imageId: this.imageId.toString(),
+    }
+     
+     this.commonService.updateCar(payload).subscribe({
+       next:(res:any)=>{
+         if (res.status == "true") {
+           Swal.fire('','Car Updated Sucessfully!','success');
+           
+         } else {
+           Swal.fire('','Car Failed to Update!','error');
+         }
+       },
+       error: (err) => {
+         console.error('Error Updating car:', err);
+         Swal.fire('', 'Something went wrong!', 'error');
+       }
+       
+     });
+   }
 
 carData:any;
   getAllCars(){
@@ -210,10 +266,10 @@ carData:any;
     });
   }
 
-  carId:string='';
+  carId:number=8;
   getCarsById(){
     const payload={
-      carId:this.carId
+      carId:this.carId.toString(),
     }
     this.commonService.getCarById(payload).subscribe((response:any) => {
       if (response.status == 'true') {
@@ -223,5 +279,9 @@ carData:any;
         console.log("No Car Data Present");
       }
     });
+  }
+
+  editCar(){
+
   }
 }

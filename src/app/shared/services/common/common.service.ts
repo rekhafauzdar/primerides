@@ -86,9 +86,27 @@ export class CommonService {
         });
       }
 
+     
+
+      public updateCar(data: any): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/car-details/update-image-id`, data, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
+
+      public uploadImage(imageData: FormData): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/car-details/upload-image`, imageData);
+      }
+
+     
+      
+
 
       public getAllCar(): Observable<any> {
-        return this.http.post<any>(`${this.API_URL}/car-details/get-all-car-details`, {
+        return this.http.post<any>(`${this.API_URL}/car-details/get-all-car-details`,{
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': 'http://localhost:4200',  
@@ -98,11 +116,23 @@ export class CommonService {
   
       
       public getCarById(id: any): Observable<any> {
-        return this.http.post<any>(`${this.API_URL}/car-details/grt-car-details`, id, {
+        return this.http.post<any>(`${this.API_URL}/car-details/get-car-details`, id, {
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': 'http://localhost:4200',  
           },
         });
       }
+
+
+      // public getCarById(id: any): Observable<any> {
+      //   return this.http.post<any>(`${this.API_URL}/car-details/get-car-details`, {}, {
+      //     params: { id: id.toString() }, 
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'Access-Control-Allow-Origin': 'http://localhost:4200',
+      //     },
+      //   });
+      // }
+      
 }

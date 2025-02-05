@@ -1555,27 +1555,27 @@ export class DataService {
   ];
   public carTypes = [
     {
-      img: 'assets/img/cars/mp-vehicle-01.png',
+      img: 'assets/img/cars/mp-vehicle-01.svg',
       heading: 'Crossover',
       cars: '35 Cars',
     },
     {
-      img: 'assets/img/cars/mp-vehicle-02.png',
+      img: 'assets/img/cars/mp-vehicle-02.svg',
       heading: 'Sports Coupe',
       cars: '45 Cars',
     },
     {
-      img: 'assets/img/cars/mp-vehicle-03.png',
+      img: 'assets/img/cars/mp-vehicle-03.svg',
       heading: 'Sedan',
       cars: '15 Cars',
     },
     {
-      img: 'assets/img/cars/mp-vehicle-04.png',
+      img: 'assets/img/cars/mp-vehicle-04.svg',
       heading: 'Pickup',
       cars: '17 Cars',
     },
     {
-      img: 'assets/img/cars/mp-vehicle-05.png',
+      img: 'assets/img/cars/mp-vehicle-05.svg',
       heading: 'Family MPV',
       cars: '24 Cars',
     },

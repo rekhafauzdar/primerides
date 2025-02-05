@@ -1,351 +1,443 @@
 <!-- Page Content -->
 <div class="content">
-    <div class="container">
-          
-      <!-- Sort By -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="sorting-info">
-            <div class="row d-flex align-items-center">
-              <div class="col-xl-7 col-lg-8 col-sm-12 col-12">
-                <div class="booking-lists">
-                  <ul class="nav">
-                    <li><a class="active" [routerLink]="routes.userBookings">All Bookings</a></li>
-                    <li><a [routerLink]="routes.userBookingUpcoming">Upcoming</a></li>
-                    <li><a [routerLink]="routes.userBookingInprogress">Inprogress</a></li>
-                    <li><a [routerLink]="routes.userBookingComplete">Completed</a></li>
-                    <li><a [routerLink]="routes.userBookingCancelled">Cancelled</a></li>
+  <div class="container">
+
+    <!-- Sort By -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sorting-info">
+          <div class="row d-flex align-items-center">
+            <div class="col-xl-7 col-lg-8 col-sm-12 col-12">
+              <div class="booking-lists">
+                <ul class="nav">
+                  <li><a class="active" [routerLink]="routes.userBookings">All Bookings</a></li>
+                  <li><a [routerLink]="routes.userBookingUpcoming">Upcoming</a></li>
+                  <li><a [routerLink]="routes.userBookingInprogress">Inprogress</a></li>
+                  <li><a [routerLink]="routes.userBookingComplete">Completed</a></li>
+                  <li><a [routerLink]="routes.userBookingCancelled">Cancelled</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-5 col-lg-4 col-sm-12 col-12">
+              <div class="filter-group">
+                <div class="sort-week sort">
+                  <div class="dropdown dropdown-action">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      This Week <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        This Week
+                      </a>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        This Month
+                      </a>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        Last 30 Days
+                      </a>
+                      <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                        data-bs-target="#custom_date">
+                        Custom
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="sort-relevance sort">
+                  <div class="dropdown dropdown-action">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Sort By Relevance <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        Sort By Relevance
+                      </a>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        Sort By Ascending
+                      </a>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        Sort By Descending
+                      </a>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        Sort By Alphabet
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sort By -->
+
+    <section class="section popular-services popular-explore">
+      <div class="container">
+    <div class="tab-content">
+      <div class="tab-pane active" id="Carmazda">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down" *ngFor="let car of carData; let i = index">
+            <div class="listing-item">
+              <div class="listing-img">
+                <div class="img-slider">                  
+                    <ng-template carouselSlide>
+                      <div class="slide-images">
+                        <a [routerLink]="routes.listingDetails">
+                          <img [src]="car.imageUrl" class="img-fluid" alt="{{ car.modal }}">
+                        </a>
+                      </div>
+                    </ng-template>                 
+                </div>
+                <div class="fav-item justify-content-end">
+                  <span class="img-count"><i class="feather icon-image"></i> 04</span>
+                  <a href="javascript:void(0)" class="fav-icon" (click)="editCar()"
+                    tabindex="1" >
+                    <i class="feather icon-heart"></i> Edit
+                  </a>
+                </div>
+                <span class="featured-text">{{ car.brand }}</span>
+              </div>
+              <div class="listing-content">
+                <div class="listing-features d-flex align-items-end justify-content-between">
+                  <div class="list-rating">
+                    <a href="javascript:void(0)" class="author-img">
+                      <img src="assets/img/profiles/avatar-04.jpg" alt="author" />
+                    </a>
+                    <h3 class="listing-title">
+                      <a [routerLink]="routes.listingDetails">{{ car.modal }}</a>
+                    </h3>
+                    <div class="list-rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span>(4.0) 138 Reviews</span>
+                    </div>
+                  </div>
+                  <div class="list-km">
+                    <span class="km-count"><img src="assets/img/icons/map-pin.svg" alt="author" /> 3.2m</span>
+                  </div>
+                </div>
+                <div class="listing-details-group">
+                  <ul>
+                    <li>
+                      <span><img src="assets/img/icons/car-parts-01.svg" alt="Auto" /></span>
+                      <p>{{ car.transmission }}</p>
+                    </li>
+                    <li>
+                      <span><img src="assets/img/icons/car-parts-02.svg" alt="KM" /></span>
+                      <p>{{ car.km }} KM</p>
+                    </li>
+                    <li>
+                      <span><img src="assets/img/icons/car-parts-03.svg" alt="Fuel" /></span>
+                      <p>{{ car.fuel }}</p>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <span><img src="assets/img/icons/car-parts-04.svg" alt="Power" /></span>
+                      <p> FasTag</p>
+                    </li>
+                    <li>
+                      <span><img src="assets/img/icons/car-parts-05.svg" alt="Year" /></span>
+                      <p>{{ car.year }}</p>
+                    </li>
+                    <li>
+                      <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons" /></span>
+                      <p>{{ car.seater }}</p>
+                    </li>
                   </ul>
                 </div>
-              </div>
-              <div class="col-xl-5 col-lg-4 col-sm-12 col-12">
-                <div class="filter-group">
-                  <div class="sort-week sort">
-                    <div class="dropdown dropdown-action">
-                      <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        This Week <i class="fas fa-chevron-down"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          This Week
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          This Month
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          Last 30 Days
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                          data-bs-target="#custom_date">
-                          Custom
-                        </a>
-                      </div>
-                    </div>
+                <div class="listing-location-details">
+                  <div class="listing-price">
+                    <span><i class="feather icon-map-pin"></i></span>{{ car.location }}
                   </div>
-                  <div class="sort-relevance sort">
-                    <div class="dropdown dropdown-action">
-                      <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sort By Relevance <i class="fas fa-chevron-down"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          Sort By Relevance
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          Sort By Ascending
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          Sort By Descending
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                          Sort By Alphabet
-                        </a>
-                      </div>
-                    </div>
+                  <div class="listing-price">
+                    <h6> ₹ {{ car.firstRangePrice }} <span>/ Day</span></h6>
                   </div>
                 </div>
               </div>
-  
             </div>
           </div>
         </div>
-      </div>
-      <!-- Sort By -->
-  
-      <div class="row">  
-        <!-- All Bookings -->
-        <div class="col-lg-12 d-flex">
-          <div class="card book-card flex-fill mb-0">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-md-5">
-                  <h4>All Bookings <span>40</span></h4>
+      </div>  
+    </div>
+    
+  </div>
+</section>
+
+    <div class="row">
+      <!-- All Bookings -->
+      <div class="col-lg-12 d-flex">
+        <div class="card book-card flex-fill mb-0">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-md-5">
+                <h4>All Bookings <span>40</span></h4>
+              </div>
+              <div class="col-md-7 text-md-end">
+                <div class="table-search">
+                  <div id="tablefilter">
+
+                    <div class="dataTables_filter">
+                      <label>
+                        <input [(ngModel)]="searchDataValue" [ngModelOptions]="{standalone: true}"
+                          [ngModelOptions]="{standalone: true}" (ngModelChange)="searchData(searchDataValue)"
+                          type="search" class="form-control" placeholder="Search" />
+                      </label>
+                    </div>
+                  </div>
+                  <a [routerLink]="routes.listingGrid" class="btn btn-add"><i class="feather icon-plus-circle"></i>Add
+                    Booking</a>
                 </div>
-                <div class="col-md-7 text-md-end">
-                  <div class="table-search">
-                    <div id="tablefilter">
-  
-                      <div class="dataTables_filter">
-                        <label>
-                          <input [(ngModel)]="searchDataValue"
-                            [ngModelOptions]="{standalone: true}"
-                            [ngModelOptions]="{standalone: true}"
-                            (ngModelChange)="searchData(searchDataValue)" type="search"
-                            class="form-control" placeholder="Search" />
-                          </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive dashboard-table">
+              <table class="table datatable">
+                <thead class="thead-light">
+                  <tr>
+                    <th>
+                      <label class="custom_check w-100" (click)="selectAll(initChecked)">
+                        <input type="checkbox" name="username" [(ngModel)]="initChecked">
+                        <span class="checkmark"></span>
+                      </label>
+                    </th>
+                    <th>Booking ID</th>
+                    <th>Car Name</th>
+                    <th>Rental Type</th>
+                    <th>Pickup / Delivery Location</th>
+                    <th>Dropoff Location</th>
+                    <th>Booked On</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (data of tableData; track data) {
+                  <tr>
+                    <td>
+                      <label class="custom_check w-100">
+                        <input type="checkbox" name="username" [(ngModel)]="data.isSelected">
+                        <span class="checkmark"></span>
+                      </label>
+                    </td>
+                    <td><a href="javascript:void(0);" data-bs-toggle="modal"
+                        data-bs-target="#upcoming_booking">{{data.bookingId}}</a></td>
+                    <td>
+                      <div class="table-avatar">
+                        <a href="javascript:void(0);" class="avatar avatar-lg flex-shrink-0">
+                          <img class="avatar-img" [src]="data.img" alt="Booking">
+                        </a>
+                        <div class="table-head-name flex-grow-1">
+                          <a href="javascript:void(0);">{{data.carName}}</a>
+                          <p>{{data.deliveryStatus}}</p>
                         </div>
                       </div>
-                      <a [routerLink]="routes.listingGrid" class="btn btn-add"><i
-                      class="feather icon-plus-circle"></i>Add Booking</a>
-                    </div>
-                  </div>
+                    </td>
+                    <td>
+                      <p>{{data.rentalType}}</p>
+                    </td>
+                    <td>
+                      <p>{{data.pickupDeliveryLocation1}} <span class="d-block">{{data.pickupDeliveryLocation2}}</span>
+                      </p>
+                    </td>
+                    <td>
+                      <p>{{data.dropoffLocation1}} <span class="d-block">{{data.dropoffLocation2}}</span></p>
+                    </td>
+                    <td>
+                      <p>{{data.bookedOn}}</p>
+                    </td>
+                    <td>
+                      <p class="text-darker">{{data.total}}</p>
+                    </td>
+                    <td>
+                      <span class="badge"
+                        [ngClass]="{'badge-light-secondary': data.status === 'Upcoming', 'badge-light-warning': data.status === 'Inprogress' , 'badge-light-danger': data.status === 'Cancelled', 'badge-light-success': data.status === 'Completed'}">{{data.status}}</span>
+                    </td>
+                    <td class="text-end">
+                      <div class="dropdown dropdown-action">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                          <i class="fas fa-ellipsis-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                          <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                            data-bs-target="#upcoming_booking">
+                            <i class="feather icon-eye me-2"></i> View
+                          </a>
+                          <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                            data-bs-target="#edit_booking">
+                            <i class="feather icon-edit me-2"></i> Edit
+                          </a>
+                          <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                            data-bs-target="#delete_modal">
+                            <i class="feather icon-trash-2 me-2"></i> Delete
+                          </a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+            <app-custom-pagination></app-custom-pagination>
+            <div class="table-footer">
+              <div class="row">
+                <div class="col-md-6">
+                  <div id="tablelength"></div>
                 </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive dashboard-table">
-                  <table class="table datatable">
-                    <thead class="thead-light">
-                      <tr>
-                        <th>
-                          <label class="custom_check w-100" (click)="selectAll(initChecked)">
-                            <input type="checkbox" name="username" [(ngModel)]="initChecked">
-                            <span class="checkmark"></span>
-                          </label>
-                        </th>
-                        <th>Booking ID</th>
-                        <th>Car Name</th>
-                        <th>Rental Type</th>
-                        <th>Pickup / Delivery Location</th>
-                        <th>Dropoff Location</th>
-                        <th>Booked On</th>
-                        <th>Total</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @for (data of tableData; track data) {
-                        <tr>
-                          <td>
-                            <label class="custom_check w-100">
-                              <input type="checkbox" name="username" [(ngModel)]="data.isSelected">
-                              <span class="checkmark"></span>
-                            </label>
-                          </td>
-                          <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#upcoming_booking">{{data.bookingId}}</a></td>
-                          <td>
-                            <div class="table-avatar">
-                              <a href="javascript:void(0);" class="avatar avatar-lg flex-shrink-0">
-                                <img class="avatar-img" [src]="data.img" alt="Booking">
-                              </a>
-                              <div class="table-head-name flex-grow-1">
-                                <a href="javascript:void(0);">{{data.carName}}</a>
-                                <p>{{data.deliveryStatus}}</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p>{{data.rentalType}}</p>
-                          </td>
-                          <td>
-                            <p>{{data.pickupDeliveryLocation1}} <span
-                            class="d-block">{{data.pickupDeliveryLocation2}}</span></p>
-                          </td>
-                          <td>
-                            <p>{{data.dropoffLocation1}} <span
-                            class="d-block">{{data.dropoffLocation2}}</span></p>
-                          </td>
-                          <td>
-                            <p>{{data.bookedOn}}</p>
-                          </td>
-                          <td>
-                            <p class="text-darker">{{data.total}}</p>
-                          </td>
-                          <td>
-                            <span class="badge"
-                            [ngClass]="{'badge-light-secondary': data.status === 'Upcoming', 'badge-light-warning': data.status === 'Inprogress' , 'badge-light-danger': data.status === 'Cancelled', 'badge-light-success': data.status === 'Completed'}">{{data.status}}</span>
-                          </td>
-                          <td class="text-end">
-                            <div class="dropdown dropdown-action">
-                              <a href="javascript:void(0);" class="dropdown-toggle"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-ellipsis-vertical"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="javascript:void(0);"
-                                  data-bs-toggle="modal" data-bs-target="#upcoming_booking">
-                                  <i class="feather icon-eye me-2"></i> View
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0);"
-                                  data-bs-toggle="modal" data-bs-target="#edit_booking">
-                                  <i class="feather icon-edit me-2"></i> Edit
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0);"
-                                  data-bs-toggle="modal" data-bs-target="#delete_modal">
-                                  <i class="feather icon-trash-2 me-2"></i> Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      }
-                    </tbody>
-                  </table>
-                </div>
-                <app-custom-pagination></app-custom-pagination>
-                <div class="table-footer">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div id="tablelength"></div>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                      <div id="tablepage"></div>
-                    </div>
-                  </div>
+                <div class="col-md-6 text-md-end">
+                  <div id="tablepage"></div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- /All Bookings -->
-  
         </div>
+      </div>
+      <!-- /All Bookings -->
+    </div>
 
 
-        <div class="row">
-          <div>
-            <!-- model for add car  -->
+    <div class="row">
+      <div>
+        <!-- model for add car  -->
+        <div class="col-lg-12 d-flex">
 
-<div class="col-lg-12 d-flex">
- 
-  <form #addCarForm="ngForm">
-    <div>
-      <table class="booking-table">
-        <tr>
-          <td>
-            <label>Segment</label>
-            <input type="text" class="form-control" name="segment" [(ngModel)]="segment">
-          </td>
-          <td>
-            <label>Year</label>
-            <input type="text" class="form-control" name="year" [(ngModel)]="year">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Brand</label>
-            <input type="text" class="form-control" name="brand" [(ngModel)]="brand">
-          </td>
-          <td>
-            <label>Model</label>
-            <input type="text" class="form-control" name="modal" [(ngModel)]="modal">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Seater</label>
-            <input type="text" class="form-control" name="seater" [(ngModel)]="seater">
-          </td>
-          <td>
-            <label>Fuel</label>
-            <input type="text" class="form-control" name="fuel" [(ngModel)]="fuel">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Transmission</label>
-            <input type="text" class="form-control" name="transmission" [(ngModel)]="transmission">
-          </td>
-          <td>
-            <label>First Range Kms</label>
-            <input type="text" class="form-control" name="firstRangeKms" [(ngModel)]="firstRangeKms">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>First Range Price</label>
-            <input type="text" class="form-control" name="firstRangePrice" [(ngModel)]="firstRangePrice">
-          </td>
-          <td>
-            <label>Second Range Kms</label>
-            <input type="text" class="form-control" name="secondRangeKms" [(ngModel)]="secondRangeKms">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Second Range Price</label>
-            <input type="text" class="form-control" name="secondRangePrice" [(ngModel)]="secondRangePrice">
-          </td>
-          <td>
-            <label>Third Range Kms</label>
-            <input type="text" class="form-control" name="thirdRangeKms" [(ngModel)]="thirdRangeKms">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Third Range Price</label>
-            <input type="text" class="form-control" name="thirdRangePrice" [(ngModel)]="thirdRangePrice">
-          </td>
-          <td>
-            <label>Monthly Range Kms</label>
-            <input type="text" class="form-control" name="monthlyKms" [(ngModel)]="monthlyKms">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Monthly Price</label>
-            <input type="text" class="form-control" name="monthlyPrice" [(ngModel)]="monthlyPrice">
-          </td>
-          <td>
-            <label>Security Deposit</label>
-            <input type="text" class="form-control" name="securityDeposit" [(ngModel)]="securityDeposit">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="setting-card">
-              <div class="change-avatar img-upload">
-                <div class="profile-img">
-                  <i class="fa-solid fa-file-image"></i>
-                </div>
-                <div class="upload-img">
-                  <h5>Car Image</h5>
-                  <div class="imgs-load d-flex align-items-center">
-                    <div class="change-photo">
-                      Upload New
-                      <input type="file" class="upload" (change)="onFileSelected($event)">
+          <form #addCarForm="ngForm">
+            <div>
+              <table class="booking-table">
+                <tr>
+                  <td>
+                    <label>Segment</label>
+                    <input type="text" class="form-control" name="segment" [(ngModel)]="segment">
+                  </td>
+                  <td>
+                    <label>Year</label>
+                    <input type="text" class="form-control" name="year" [(ngModel)]="year">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Brand</label>
+                    <input type="text" class="form-control" name="brand" [(ngModel)]="brand">
+                  </td>
+                  <td>
+                    <label>Model</label>
+                    <input type="text" class="form-control" name="modal" [(ngModel)]="modal">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Seater</label>
+                    <input type="text" class="form-control" name="seater" [(ngModel)]="seater">
+                  </td>
+                  <td>
+                    <label>Fuel</label>
+                    <input type="text" class="form-control" name="fuel" [(ngModel)]="fuel">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Transmission</label>
+                    <input type="text" class="form-control" name="transmission" [(ngModel)]="transmission">
+                  </td>
+                  <td>
+                    <label>First Range Kms</label>
+                    <input type="text" class="form-control" name="firstRangeKms" [(ngModel)]="firstRangeKms">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>First Range Price</label>
+                    <input type="text" class="form-control" name="firstRangePrice" [(ngModel)]="firstRangePrice">
+                  </td>
+                  <td>
+                    <label>Second Range Kms</label>
+                    <input type="text" class="form-control" name="secondRangeKms" [(ngModel)]="secondRangeKms">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Second Range Price</label>
+                    <input type="text" class="form-control" name="secondRangePrice" [(ngModel)]="secondRangePrice">
+                  </td>
+                  <td>
+                    <label>Third Range Kms</label>
+                    <input type="text" class="form-control" name="thirdRangeKms" [(ngModel)]="thirdRangeKms">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Third Range Price</label>
+                    <input type="text" class="form-control" name="thirdRangePrice" [(ngModel)]="thirdRangePrice">
+                  </td>
+                  <td>
+                    <label>Monthly Range Kms</label>
+                    <input type="text" class="form-control" name="monthlyKms" [(ngModel)]="monthlyKms">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Monthly Price</label>
+                    <input type="text" class="form-control" name="monthlyPrice" [(ngModel)]="monthlyPrice">
+                  </td>
+                  <td>
+                    <label>Security Deposit</label>
+                    <input type="text" class="form-control" name="securityDeposit" [(ngModel)]="securityDeposit">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="setting-card">
+                      <div class="change-avatar img-upload">
+                        <div class="profile-img">
+                          <i class="fa-solid fa-file-image"></i>
+                        </div>
+                        <div class="upload-img">
+                          <h5>Car Image</h5>
+                          <div class="imgs-load d-flex align-items-center">
+                            <div class="change-photo">
+                              Upload New
+                              <input type="file" class="upload" (change)="onFileSelected($event)">
+                            </div>
+                            <a class="upload-remove">Remove</a>
+                          </div>
+                          <p class="form-text">Your Image should be below 4 MB, Accepted format: JPG, PNG, SVG</p>
+                        </div>
+                      </div>
                     </div>
-                    <a class="upload-remove">Remove</a>
-                  </div>
-                  <p class="form-text">Your Image should be below 4 MB, Accepted format: JPG, PNG, SVG</p>
-                </div>
+                  </td>
+                  <td>
+                    <label>Location</label>
+                    <br>
+                    <select name="location" [(ngModel)]="location" class="FirstSearch">
+                      <option *ngFor="let x of locations" [value]="x">{{x}}</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <br>
+              <div class="text-center">
+                <button class="btn btn-success" (click)="updateCar()">Save</button>
               </div>
             </div>
-          </td>
-          <td>
-            <label>Location</label>
-            <br>
-            <select name="location" [(ngModel)]="location" class="FirstSearch">
-              <option *ngFor="let x of locations" [value]="x">{{x}}</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <br>
-      <div class="text-center">
-        <button class="btn btn-success" (click)="saveNewCar()">Save</button>
+          </form>
+
+
+        </div>
       </div>
+
     </div>
-  </form>
-  
-  
+    <!-- /Dashboard -->
+
+  </div>
 </div>
-          </div>
-
-        </div>
-        <!-- /Dashboard -->
-  
-      </div>
-    </div>
-    <!-- /Page Content -->
+<!-- /Page Content -->

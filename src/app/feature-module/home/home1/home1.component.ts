@@ -14,6 +14,7 @@ import {
   testimonial,
 } from 'src/app/shared/services/model/model';
 import { DatePipe } from '@angular/common';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-home',
@@ -35,8 +36,13 @@ export class HomeComponent implements AfterViewInit {
   myTime: Date = new Date();
   myTime2: Date = new Date();
 
+  ReturnLocation: string = '';
+  returnLocations: string[] = ["Indirapuram","IGI Airport","Gaur City"];
 
-  constructor(private data: DataService, private datePipe: DatePipe) {
+  constructor(
+    private data: DataService, private datePipe: DatePipe,
+    private commonService:CommonService
+  ) {
     this.popularCars1 = this.data.popularCars1;
     this.popularCars2 = this.data.popularCars2;
     this.popularCars3 = this.data.popularCars3;
@@ -46,6 +52,8 @@ export class HomeComponent implements AfterViewInit {
     this.recommendedCar = this.data.recommendedCar;
     this.testimonial = this.data.testimonial;
     this.carTypes = this.data.carTypes;
+    this.getAllCars();
+
   }
 
   recommendedCarOptions: OwlOptions = {
@@ -176,4 +184,20 @@ export class HomeComponent implements AfterViewInit {
     this.isClassAdded[index] = !this.isClassAdded[index];
   }
   public isClassAdded: boolean[] = [false];
+
+
+
+
+
+  carData:any;
+  getAllCars(){
+    this.commonService.getAllCar().subscribe((response:any) => {
+      if (response.status == 'true') {
+       this.carData = response.data;
+       console.log(this.carData);
+      } else {
+        console.log("No Cars Data Present");
+      }
+    });
+  }
 }
