@@ -166,6 +166,7 @@ export class AdminComponent {
   
       if (this.selectedFile) {  
         formData.append('image', this.selectedFile); 
+        formData.append('imageType','Car_Image');
       }
   
       this.commonService.uploadImage(formData).subscribe({

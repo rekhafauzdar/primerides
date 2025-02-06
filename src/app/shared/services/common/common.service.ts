@@ -125,6 +125,48 @@ export class CommonService {
       }
 
 
+      
+
+      public getCarAvailibility(data:any): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/booking-details/search-car`, data,{
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
+  
+
+      public getUserProfileById(id: any): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/user-profile/get-user-profile-by-id`, id, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
+
+
+      // public getUserProfileById(id: any): Observable<any> {
+      //   return this.http.get<any>(`${this.API_URL}/user-profile/${id}`, {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'Access-Control-Allow-Origin': 'http://localhost:4200',  
+      //     },
+      //   });
+      // }
+      
+
+
+      public getAllUserProfile(): Observable<any> {
+        return this.http.post<any>(`${this.API_URL}/user-profile/get-all-user-profiles`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:4200',  
+          },
+        });
+      }
+
       // public getCarById(id: any): Observable<any> {
       //   return this.http.post<any>(`${this.API_URL}/car-details/get-car-details`, {}, {
       //     params: { id: id.toString() }, 

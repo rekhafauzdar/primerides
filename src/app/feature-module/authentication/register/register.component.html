@@ -33,6 +33,26 @@
             }
           </div>
           <div class="input-block">
+            <label for="mobile" class="form-label">mobile <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" placeholder="" formControlName="mobile" [ngClass]="{
+                'is-invalid': f['mobile'].touched && f['mobile'].invalid
+              }" />
+            @if (f['mobile'].touched && f['mobile'].invalid) {
+            <div class="invalid-feedback">
+              @if (f['mobile'].errors && f['mobile'].errors['required']) {
+              <div>
+                mobile is required.
+              </div>
+              }
+            </div>
+            }
+            @if (CustomControler !== 0) {
+            <div class="invalid-feedback">
+              {{ CustomControler }}
+            </div>
+            }
+          </div>
+          <div class="input-block">
             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
             <input class="form-control" type="email" placeholder="" formControlName="email" [ngClass]="{
                 'is-invalid': f['email'].touched && f['email'].invalid

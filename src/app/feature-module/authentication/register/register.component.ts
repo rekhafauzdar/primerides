@@ -39,7 +39,7 @@ export class RegisterComponent {
     if (this.form.valid) {
 
       let user = ({
-        name: this.form.value.username || '',       
+        userName: this.form.value.username || '',       
         email: this.form.value.email || '',    
         password: this.form.value.password || '',   
         userType: this.form.value.userType || 'user',  

@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { routes } from 'src/app/shared/routes/routes';
 import { DataService } from 'src/app/shared/services/data/data.service';
 import { listingGrid } from 'src/app/shared/services/model/model';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 interface data {
   value: string;
 }
@@ -18,9 +19,14 @@ export class ListingGridComponent {
   public selectedValue3!: string;
   public listingGrid: listingGrid[] = [];
 
-  constructor(private data: DataService,private datePipe: DatePipe) {
+  constructor(
+    private data: DataService,private datePipe: DatePipe,
+    private commonService: CommonService){
+ 
     this.listingGrid = this.data.listingGrid;
-  }
+    this.getAllCars();
+    
+    }
 
   public routes = routes;
 
@@ -91,4 +97,51 @@ export class ListingGridComponent {
   showTimePicker: Array<string> = [];
   myTime: Date = new Date();
   myTime2: Date = new Date();
+
+  location: string = '';
+  cityLocations: string[] = ["Indirapuram","IGI Airport","Gaur City"];
+  bookingDate: string = '';
+  bookingTime: string = '';
+  endingDate: string = '';
+  endingTime: string = '';
+  city: string = '';
+  pickupLocation: string = '';
+  transmission: string = '';
+  fuel: string = '';
+  seater:  string = '';
+  carData:any;
+
+  getAllCars(){
+    this.commonService.getAllCar().subscribe((response:any) => {
+      if (response.status == 'true') {
+       this.carData = response.data;
+       console.log(this.carData);
+      } else {
+        console.log("No Cars Data Present");
+      }
+    });
+  }
+
+  searchCarAvailibility(){
+    const payload={      
+        bookingDate: this.bookingDate,
+        bookingTime: this.bookingDate,
+        endingDate: this.bookingDate,
+        endingTime: this.bookingDate,
+        city: this.bookingDate,
+        pickupLocation: this.bookingDate,
+        transmission: this.bookingDate,
+        fuel: this.bookingDate,
+        seater:   this.seater,        
+    }
+
+    this.commonService.getCarAvailibility(payload).subscribe((response:any) => {
+      if (response.status == 'true') {
+       this.carData = response.data;
+       console.log(this.carData);
+      } else {
+        console.log("No Cars Data Present");
+      }
+    });
+  }
 }

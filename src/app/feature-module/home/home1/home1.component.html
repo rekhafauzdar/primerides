@@ -43,11 +43,9 @@
           <li class="column-group-main">
             <div class="input-block">
               <label for="location">Pickup Location</label>
-              <div class="group-img">
-                <!-- <input type="text" class="form-control" placeholder="Enter City, Airport, or Address" />
-                -->
-                <select [(ngModel)]="ReturnLocation" class="form-control" formControlName="ReturnLocation">
-                  <option *ngFor="let location of returnLocations" [value]="location">{{location}}</option>
+              <div class="group-img">               
+                <select [(ngModel)]="location" class="form-control" formControlName="location">
+                  <option *ngFor="let location of cityLocations" [value]="location">{{location}}</option>
                 </select>
                 <span><i class="feather icon-map-pin"></i></span>
               </div>
@@ -60,7 +58,7 @@
             <div class="input-block-wrapp">
               <div class="input-block date-widget">
                 <div class="group-img">
-                  <input type="text" class="form-control datetimepicker" placeholder="04/11/2023" bsDatepicker />
+                  <input type="text" class="form-control datetimepicker" placeholder="05/02/2025" bsDatepicker />
                   <i class="feather icon-calendar cus-icon-calender"></i>
                 </div>
               </div>
@@ -82,7 +80,7 @@
             <div class="input-block-wrapp">
               <div class="input-block date-widge">
                 <div class="group-img">
-                  <input type="text" class="form-control datetimepicker" placeholder="04/11/2023" bsDatepicker />
+                  <input type="text" class="form-control datetimepicker" placeholder="08/02/2025" bsDatepicker />
                   <span><i class="feather icon-calendar cus-icon-calender"></i></span>
                 </div>
               </div>
@@ -100,7 +98,7 @@
           <li class="column-group-last">
             <div class="input-block">
               <div class="search-btn">
-                <button class="btn search-button" type="submit" [routerLink]="routes.listingGrid">
+                <button class="btn search-button" type="submit" [routerLink]="routes.listingGrid" click="searchCarAvailibility()">
                   <i class="fa fa-search" aria-hidden="true"></i>Search
                 </button>
               </div>
@@ -112,6 +110,7 @@
   </div>
 </div>
 <!-- /Search -->
+
 
 <!-- services -->
 <section class="section services">
@@ -438,6 +437,12 @@
                   <div class="listing-price">
                     <h6> ₹ {{ car.firstRangePrice }} <span>/ Day</span></h6>
                   </div>
+                </div>
+                <div class="listing-button">
+                  <a [routerLink]="routes.listingDetails" class="btn btn-order"
+                    ><span><i class="feather icon-calendar me-2"></i></span>Book
+                    Now</a
+                  >
                 </div>
               </div>
             </div>
@@ -5665,6 +5670,8 @@
   </div>
 </section>
 <!-- About us Testimonials -->
+
+
 <!-- FAQ  -->
 <section class="section faq-section bg-light-primary">
   <div class="container">
@@ -5779,16 +5786,14 @@
 <!-- /FAQ -->
 
 <!-- Pricing Plan -->
-<section class="pricing-section pricing-page pricing-section-bottom">
+<!-- <section class="pricing-section pricing-page pricing-section-bottom">
   <div class="container">
-    <!-- Heading title-->
+   
     <div class="section-heading" data-aos="fade-down">
       <h2>Transparent Pricing For you</h2>
       <p>Choose a package that suits you</p>
-    </div>
-    <!-- /Heading title -->
+    </div> 
 
-    <!-- Plan Selected -->
     <div class="plan-selected" data-aos="fade-down">
       <h4>Monthly</h4>
       <div class="status-toggle me-2 ms-2">
@@ -5797,7 +5802,7 @@
       </div>
       <h4>Annually</h4>
     </div>
-    <!-- /Plan Selected -->
+ 
     <div class="row">
       <div class="col-lg-3 d-flex col-md-6 col-12" data-aos="fade-down">
         <div class="price-card price-selected flex-fill">
@@ -5950,7 +5955,6 @@
       </div>
     </div>
 
-    <!-- App Available -->
     <div class="user-app-group">
       <div class="app-left">
         <img src="assets/img/bg/app-left.png" class="img-fluid" alt="App Available" />
@@ -5985,10 +5989,12 @@
         </div>
       </div>
     </div>
-    <!-- /App Available -->
+   
   </div>
-</section>
+</section> -->
 <!-- /Pricing Plan -->
+
+
 <!-- Blog Section -->
 <section class="blog-section news-section pt-0">
   <div class="container">
